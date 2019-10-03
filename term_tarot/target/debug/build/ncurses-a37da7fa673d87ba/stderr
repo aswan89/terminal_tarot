@@ -1,0 +1,5 @@
+In file included from /nix/store/sr4253np2gz2bpha4gn8gqlmiw604155-glibc-2.27-dev/include/assert.h:35:0,
+                 from /home/andrew/codeRepo/terminalTarot/termTarot/target/debug/build/ncurses-a37da7fa673d87ba/out/chtype_size.c:2:
+/nix/store/sr4253np2gz2bpha4gn8gqlmiw604155-glibc-2.27-dev/include/features.h:381:4: warning: #warning _FORTIFY_SOURCE requires compiling with optimization (-O) [-Wcpp]
+ #  warning _FORTIFY_SOURCE requires compiling with optimization (-O)
+    ^~~~~~~

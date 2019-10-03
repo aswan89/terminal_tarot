@@ -1,0 +1,57 @@
+{
+  "position_x_size": 5,
+  "position_y_size": 7,
+  "positions": [
+    {
+      "order":1,
+      "name": "Motive",
+      "meaning": "Why are you seeking the debugging oracle?",
+      "orientation": "Vertical",
+      "x_pos": 0,
+      "y_pos": 0
+    },
+    {
+      "order": 2,
+      "name": "Facet",
+      "meaning": "What part of the system is failing?",
+      "orientation": "Vertical",
+      "x_pos": 0,
+      "y_pos": 1
+    },
+    {
+      "order": 3,
+      "name": "Immediate Past",
+      "meaning": "What changed recently that caused the problem?",
+      "orientation": "Vertical",
+      "x_pos": 0,
+      "y_pos": 2 
+    },
+    {
+      "order": 4,
+      "name": "The Action",
+      "meaning": "What must you do to address the problem?",
+      "orientation": "Vertical",
+      "x_pos": 0,
+      "y_pos": 3
+    },
+    {
+      "order": 5,
+      "name": "The Result",
+      "meaning": "What will happen if The Action is executed in its entirety?",
+      "orientation": "Vertical",
+      "x_pos": 0,
+      "y_pos": 4
+    },
+    {
+      "order": 6,
+      "name": "The Lesson",
+      "meaning": "What can be done to avoid similar problems going forward?",
+      "orientation": "Vertical",
+      "x_pos": 0,
+      "y_pos": 5 
+    }
+  ]
+}
+
+
+
