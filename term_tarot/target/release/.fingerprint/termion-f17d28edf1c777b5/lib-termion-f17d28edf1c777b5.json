@@ -1,1 +1,0 @@
-{"rustc":11769372179108299445,"features":"[]","target":11559375222434093650,"profile":5060393583489210841,"path":15213331425060014835,"deps":[["libc v0.2.62","libc",13346739699460238295],["numtoa v0.1.0","numtoa",3675410625716018092]],"local":[{"Precalculated":"1.5.3"}],"rustflags":[],"edition":"Edition2015"}

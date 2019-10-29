@@ -1,1 +1,0 @@
-/home/andrew/codeRepo/terminalTarot/term_tarot/target/debug/term_tarot: /home/andrew/codeRepo/terminalTarot/term_tarot/src/deck.rs /home/andrew/codeRepo/terminalTarot/term_tarot/src/lib.rs /home/andrew/codeRepo/terminalTarot/term_tarot/src/main.rs /home/andrew/codeRepo/terminalTarot/term_tarot/src/spread.rs

@@ -1,1 +1,0 @@
-{"rustc":11769372179108299445,"features":"[\"lazy_static\", \"ppv-lite86\", \"simd\", \"std\"]","target":18307257884113895720,"profile":5060393583489210841,"path":17530264278412847059,"deps":[["lazy_static v1.4.0","lazy_static",6896599011096850924],["ppv-lite86 v0.2.5","ppv_lite86",8286148335296652854]],"local":[{"Precalculated":"0.2.2"}],"rustflags":[],"edition":"Edition2018"}
