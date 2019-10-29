@@ -1,7 +1,6 @@
 use serde::Deserialize;
 use crate::deck::Card;
 use crate::deck::Deck;
-use crate::deck;
 
 #[derive(Deserialize, PartialEq, Debug)]
 enum PosOrientation {
@@ -67,9 +66,9 @@ impl<'a> FilledSpread<'a> {
             pos.0.print(&mut writer);
             writeln!(&mut writer, "").unwrap();
             pos.1.print(seed, &mut writer);
-            writeln!(&mut writer, "");
+            writeln!(&mut writer, "").unwrap();
             writeln!(&mut writer, "{}", std::iter::repeat("=").take(30).collect::<String>()).unwrap();
-            writeln!(&mut writer, "");
+            writeln!(&mut writer, "").unwrap();
         }
     }
 
@@ -94,6 +93,7 @@ impl Position {
 }
 
 #[cfg(test)]
+use crate::deck;
 mod tests {
     use super::*;
 

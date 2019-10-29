@@ -1,8 +1,10 @@
 extern crate clap;
+extern crate pager;
 use clap::{App, Arg};
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 use std::path::Path;
+use pager::Pager;
 mod deck;
 mod spread;
 
@@ -10,6 +12,7 @@ use crate::deck::Deck;
 use crate::spread::{Spread, FilledSpread};
 
 fn main() {
+    Pager::new().setup();
     let now = std::time::SystemTime::now();
 
     let matches = App::new("Terminal Tarot")
