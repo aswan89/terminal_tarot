@@ -60,7 +60,7 @@ impl<'a> FilledSpread<'a> {
         }
     }
 
-    pub fn print(&self, seed: u64, mut writer: impl std::io::Write) {
+    pub fn print(&self, iflag: bool, seed: u64, mut writer: impl std::io::Write) {
         let filled_pos = self.spread.positions.iter().zip(self.cards.iter());
         for pos in filled_pos {
             pos.0.print(&mut writer);
@@ -69,6 +69,11 @@ impl<'a> FilledSpread<'a> {
             writeln!(&mut writer, "").unwrap();
             writeln!(&mut writer, "{}", std::iter::repeat("=").take(30).collect::<String>()).unwrap();
             writeln!(&mut writer, "").unwrap();
+            if iflag {
+                writeln!(&mut writer, "Press ENTER to draw next card").unwrap();
+                let mut press = String::new();
+                std::io::stdin().read_line(&mut press).unwrap();
+            }
         }
     }
 
@@ -200,7 +205,7 @@ Shadow: shadow_meaning2
 
 "#;
 
-        test_filled_spread.print(1, &mut test_result);
+        test_filled_spread.print(false, 1, &mut test_result);
         let test_output = String::from_utf8(test_result).unwrap();
 
         assert_eq!(test_output, target_output);

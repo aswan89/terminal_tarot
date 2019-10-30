@@ -12,7 +12,6 @@ use crate::deck::Deck;
 use crate::spread::{Spread, FilledSpread};
 
 fn main() {
-    Pager::new().setup();
     let now = std::time::SystemTime::now();
 
     let matches = App::new("Terminal Tarot")
@@ -69,5 +68,14 @@ fn main() {
     let mut deck = Deck::new_from_file(deck_path);
     let spread = Spread::new_from_file(spread_path);
     let filled_spread = FilledSpread::new(spread, &mut deck, calc_hash(&seed));
-    filled_spread.print(calc_hash(&seed), &mut std::io::stdout());
+
+    if !matches.is_present("interactive") {
+      Pager::new().setup();
+    }
+
+    filled_spread.print(
+        matches.is_present("interactive"),
+        calc_hash(&seed), 
+        &mut std::io::stdout()
+        );
 }
