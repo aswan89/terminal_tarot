@@ -1,4 +1,5 @@
 use serde::Deserialize;
+use crate::stored_element::StoredElement;
 
 #[derive(Deserialize, PartialEq, Debug)]
 struct CardGraphic {
@@ -39,31 +40,22 @@ impl Card {
 #[derive(Deserialize, PartialEq, Debug)]
 pub struct Deck {
     cards: Vec<Card>,
+    pub name: String
 }
 
-use std::path::Path;
-
-impl Deck {
-
-    pub fn new_from_file(path: &Path) -> Deck {
-        use std::fs::File;
-        use std::io::prelude::*;
-
-        let mut file = File::open(path).unwrap();
-        let mut contents = String::new();
-        file.read_to_string(&mut contents).unwrap();
-        
-        match path.extension() {
-            None => panic!("Need file extension to determine deserialization method!"),
-            Some(os_str) => {
-                match os_str.to_str() {
-                    Some("json") => Deck::new_from_json(&contents),
-                    _ => panic!("Don't know how to deserialize file type!"),
-                }
-            }
-        }
+use std::fmt;
+impl fmt::Display for Deck {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.name)
     }
+}
 
+impl StoredElement for Deck {
+    fn new_from_json(json: &str) -> Deck {
+        serde_json::from_str(json).unwrap()
+    } 
+}
+impl Deck {
     pub fn shuffle_deck(&mut self, seed: u64) {
         use rand::SeedableRng;
         use rand::rngs;
@@ -73,121 +65,25 @@ impl Deck {
         self.cards.shuffle(&mut rng);
     }
 
-    pub fn new_from_json(json: &str) -> Deck {
-        serde_json::from_str(json).unwrap()
-    }
-        
     pub fn draw(&self, count: usize) -> &[Card] {
         if self.cards.len() < count {
             panic!("Attempted to draw more cards than are in deck.");
         }
         &self.cards[0..count]
     }
-
 }
 
-
+pub mod test_utils;
 #[cfg(test)]
-pub mod tests {
-    use super::*;
-    pub fn return_test_deck() -> String {
-        String::from(r#"
-        {
-            "cards": 
-            [
-              {
-                "rank": 0,
-                "suit": "test_suit",
-                "name": "test_name",
-                "meanings": {
-                  "light": [
-                    "light_meaning",
-                    "light_meaning2"
-                  ],
-                  "shadow": [
-                    "shadow_meaning",
-                    "shadow_meaning2"
-                  ]
-                },
-                "keywords": [
-                  "test_keyword",
-                  "test_keyword1"
-                ],
-                "fortune_telling": [
-                  "test_fortune",
-                  "test_fortune1"
-                ]
-              },
-              {
-                "rank": 1,
-                "suit": "test_suit1",
-                "name": "test_name1",
-                "meanings": {
-                  "light": [
-                    "light_meaning1"
-                  ],
-                  "shadow": [
-                    "shadow_meaning1"
-                  ]
-                },
-                "keywords": [
-                  "test_keyword1"
-                ],
-                "fortune_telling": [
-                  "test_fortune1"
-                ]
-              }, 
-              {
-                "rank": 2,
-                "suit": "test_suit2",
-                "name": "test_name2",
-                "meanings": {
-                  "light": [
-                    "light_meaning2"
-                  ],
-                  "shadow": [
-                    "shadow_meaning2"
-                  ]
-                },
-                "keywords": [
-                  "test_keyword2"
-                ],
-                "fortune_telling": [
-                  "test_fortune2"
-                ]
-              } 
-            ]
-        }
-        "#)
-    }
-
-    fn return_test_card() -> Card {
-        let manual_meanings = Meaning {
-            light: vec![ 
-                String::from("light_meaning"),
-                String::from("light_meaning2") 
-            ],
-            shadow: vec![ 
-                String::from("shadow_meaning"),
-                String::from("shadow_meaning2")
-            ],
-        };
-
-        Card {
-            rank: 0,
-            suit: String::from("test_suit"),
-            name: String::from("test_name"),
-            meanings: manual_meanings,
-            keywords: vec![
-                String::from("test_keyword"),
-                String::from("test_keyword1")
-            ],
-            fortune_telling: vec![
-                String::from("test_fortune"),
-                String::from("test_fortune1")
-            ],
-        }
-    }
+mod tests {
+    use crate::stored_element::StoredElement;
+    use crate::deck::test_utils::{
+        return_test_deck,
+        return_test_card
+    };
+    use crate::deck::{
+        Deck
+    };
 
     #[test]
     fn display_card() {
@@ -214,6 +110,7 @@ Shadow: shadow_meaning
         test_deck.cards.truncate(1);
 
         let manual_deck = Deck {
+            name: "test deck".to_string(),
             cards: vec![ return_test_card() ],
         };
 

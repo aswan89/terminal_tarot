@@ -1,15 +1,17 @@
 extern crate clap;
 extern crate pager;
+extern crate dialoguer;
 use clap::{App, Arg};
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 use std::path::Path;
 use pager::Pager;
-mod deck;
-mod spread;
+use dialoguer::Select;
+use std::fs;
 
-use crate::deck::Deck;
-use crate::spread::{Spread, FilledSpread};
+extern crate term_tarot_lib;
+use term_tarot_lib::deck::Deck;
+use term_tarot_lib::spread::{Spread, FilledSpread};
 
 fn main() {
     let now = std::time::SystemTime::now();
@@ -31,17 +33,15 @@ fn main() {
              .takes_value(true)
              .help("Value used to draw cards and select interpretations")
              )
-        .arg(Arg::with_name("spread_file")
-             .long("spread_file")
+        .arg(Arg::with_name("spread_path")
+             .long("spread_path")
              .takes_value(true)
-             .required(true)
-             .help("Path of file to use to generate tarot spread positions")
+             .help("Path that holds desired spread files. Can be a single file or a directory")
              )
-        .arg(Arg::with_name("deck_file")
-             .long("deck_file")
+        .arg(Arg::with_name("deck_path")
+             .long("deck_path")
              .takes_value(true)
-             .required(true)
-             .help("Path of file used to pull tarot cards")
+             .help("Path that holds desired deck files. Can be a single file or a directory")
              )
         .get_matches();
 
@@ -56,16 +56,39 @@ fn main() {
             ).to_string(),
     };
 
-    let spread_path = Path::new(matches.value_of("spread_file").unwrap());
-    let deck_path = Path::new(matches.value_of("deck_file").unwrap());
+    let spread_path = Path::new(matches.value_of("spread_path").unwrap());
+    let deck_path = Path::new(matches.value_of("deck_path").unwrap());
 
     fn calc_hash<T: Hash>(t: &T) -> u64 {
         let mut s = DefaultHasher::new();
         t.hash(&mut s);
         s.finish()
     }
+/*
+    fn choose_reading_element<T>(path: Path) -> T {
+        let mut found_elements = match path.is_dir() {
+            true => {
+                fs::read_dir(path)
+                    .unwrap()
+                    .map(|x| Deck::new_from_file(&x.unwrap().path()))
+                    .collect()
+            },
+            false => vec![Deck::new_from_file(&path)],
+        };
 
-    let mut deck = Deck::new_from_file(deck_path);
+        return match found_elements.len() {
+            1 => found_elements.remove(0),
+            _ => {
+                let menu = Select::new();
+                for element in found_elements {
+                    menu.item(element.name);
+                }
+                let taridx = menu.with_prompt(
+            }
+        }
+    };*/
+
+    let deck = Deck::new_from_file(deck_path);
     let spread = Spread::new_from_file(spread_path);
     let filled_spread = FilledSpread::new(spread, &mut deck, calc_hash(&seed));
 

@@ -1,6 +1,6 @@
 use serde::Deserialize;
-use crate::deck::Card;
-use crate::deck::Deck;
+use crate::deck::{Card, Deck};
+use crate::stored_element::StoredElement;
 
 #[derive(Deserialize, PartialEq, Debug)]
 enum PosOrientation {
@@ -13,35 +13,22 @@ pub struct Spread {
     positions: Vec<Position>,
     position_x_size: u8,
     position_y_size: u8,
+    name: String 
 }
 
-use std::path::Path;
+use std::fmt;
+impl fmt::Display for Spread {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.name)
+    }
+}
 
-impl Spread {
-    
+impl StoredElement for Spread {
     fn new_from_json(json: &str) -> Spread {
         serde_json::from_str(json).unwrap()
     }
-
-    pub fn new_from_file(path: &Path) -> Spread {
-        use std::fs::File;
-        use std::io::prelude::*;
-
-        let mut file = File::open(path).unwrap();
-        let mut contents = String::new();
-        file.read_to_string(&mut contents).unwrap();
-        
-        match path.extension() {
-            None => panic!("Need file extension to determine deserialization method!"),
-            Some(os_str) => {
-                match os_str.to_str() {
-                    Some("json") => Spread::new_from_json(&contents),
-                    _ => panic!("Don't know how to deserialize file type!"),
-                }
-            }
-        }
-    }
 }
+    
 
 #[derive(PartialEq, Debug)]
 pub struct FilledSpread<'a> {
@@ -97,62 +84,22 @@ impl Position {
     }
 }
 
+mod test_utils;
 #[cfg(test)]
-use crate::deck;
 mod tests {
-    use super::*;
-
-    fn gen_test_spread_json() -> String {
-        String::from(r#"
-          {
-              "position_x_size": 5,
-              "position_y_size": 7,
-              "positions": [
-                  {
-                      "order": 1,
-                      "name": "test position 1",
-                      "meaning": "test meaning 1",
-                      "orientation": "Horizontal",
-                      "x_pos": 0,
-                      "y_pos": 0
-                  },
-                  {
-                      "order": 2,
-                      "name": "test position 2",
-                      "meaning": "test meaning 2",
-                      "orientation": "Vertical",
-                      "x_pos": 5,
-                      "y_pos": 5 
-                  }
-               ]
-           }
-        "#)
-    }
-
-    fn gen_test_spread() -> Spread {
-        let pos1 = Position {
-            order: 1,
-            name: "test position 1".to_string(),
-            meaning: "test meaning 1".to_string(),
-            orientation: PosOrientation::Horizontal,
-            x_pos: 0,
-            y_pos: 0,
-        };
-        let pos2 = Position {
-            order: 2,
-            name: "test position 2".to_string(),
-            meaning: "test meaning 2".to_string(),
-            orientation: PosOrientation::Vertical,
-            x_pos: 5,
-            y_pos: 5,
-        };
-        Spread {
-            positions: vec![pos1, pos2],
-            position_x_size: 5,
-            position_y_size: 7,
-        }
-    }
-
+    use crate::spread::test_utils::{
+        gen_test_spread,
+        gen_test_spread_json
+    };
+    use crate::spread::{
+        FilledSpread,
+        Spread
+    };
+    use crate::deck::Deck;
+    use crate::deck::test_utils::{
+        return_test_deck
+    };
+    use crate::stored_element::StoredElement;
     #[test]
     fn position_print() {
         let mut test_result = Vec::new();
@@ -172,7 +119,7 @@ test meaning 1
     fn filled_spread_print() {
         let mut test_result = Vec::new();
         let test_spread = gen_test_spread();
-        let mut test_deck = Deck::new_from_json(&deck::tests::return_test_deck());
+        let mut test_deck = Deck::new_from_json(&return_test_deck());
         let test_filled_spread = FilledSpread::new(
             test_spread,
             &mut test_deck,
@@ -221,8 +168,8 @@ Shadow: shadow_meaning2
     #[test]
     fn construct_filled_spread() {
         let test_spread = gen_test_spread();
-        let mut test_deck = Deck::new_from_json(&deck::tests::return_test_deck());
-        let mut ref_deck = Deck::new_from_json(&deck::tests::return_test_deck());
+        let mut test_deck = Deck::new_from_json(&return_test_deck());
+        let mut ref_deck = Deck::new_from_json(&return_test_deck());
         ref_deck.shuffle_deck(1);
         
         let manual_filled_spread: FilledSpread = FilledSpread {

@@ -1,0 +1,90 @@
+{
+  "name": "Celtic Cross",
+  "position_x_size": 5,
+  "position_y_size": 7,
+  "positions": [
+    {
+      "order":1,
+      "name": "The Present",
+      "meaning": "What is happening to to the querent? What is their state of mind?",
+      "orientation": "Vertical",
+      "x_pos": 0,
+      "y_pos": 0
+    },
+    {
+      "order": 2,
+      "name": "The Challenge",
+      "meaning": "What is the querent's immediate challenge or problem being faced?",
+      "orientation": "Horizontal",
+      "x_pos": 0,
+      "y_pos": 0
+    },
+    {
+      "order": 3,
+      "name": "The Past",
+      "meaning": "What events have lead up to the immediate situation?",
+      "orientation": "Vertical",
+      "x_pos": -1,
+      "y_pos": 0
+    },
+    {
+      "order": 4,
+      "name": "The Future",
+      "meaning": "What is likely to occur within the next weeks and months?",
+      "orientation": "Vertical",
+      "x_pos": 1,
+      "y_pos": 0 
+    },
+    {
+      "order": 5,
+      "name": "Above",
+      "meaning": "What is the querent's goal, aspiration, or best outcome to the situation?",
+      "orientation": "Vertical",
+      "x_pos": 0,
+      "y_pos": 1
+    },
+    {
+      "order": 6,
+      "name": "Below",
+      "meaning": "What are the feelings or thoughts subconciously embedded in the foundation of the situation?",
+      "orientation": "Vertical",
+      "x_pos": 0,
+      "y_pos": -1 
+    },
+    {
+      "order": 7,
+      "name": "Advice",
+      "meaning": "A recommendation for how to approach the situation",
+      "orientation": "Vertical",
+      "x_pos": 2,
+      "y_pos": -1
+    },
+    {
+      "order": 8,
+      "name": "External Influences",
+      "meaning": "The people, energies, and events that will affect the outcome, but are beyond the querent's control",
+      "orientation": "Vertical",
+      "x_pos": 2,
+      "y_pos": 0
+    },
+    {
+      "order": 9,
+      "name": "Hopes and Fears",
+      "meaning": "What outcomes might make the querent happy or bring dread?",
+      "orientation": "Vertical",
+      "x_pos": 2,
+      "y_pos": 1
+    },
+    {
+      "order": 10,
+      "name": "Outcome",
+      "meaning": "How the situation will be resolved, based on the current course.",
+      "orientation": "Vertical",
+      "x_pos": 2,
+      "y_pos": 2 
+    }
+  ]
+}
+
+
+
