@@ -1,7 +1,10 @@
+#[cfg(test)]
+pub mod utils {
 use crate::deck::{
     Card,
     Meaning
 };
+
 pub fn return_test_card() -> Card {
     let manual_meanings = Meaning {
         light: vec![ 
@@ -100,4 +103,5 @@ pub fn return_test_deck() -> String {
         ]
     }
     "#)
+}
 }

@@ -77,7 +77,7 @@ pub mod test_utils;
 #[cfg(test)]
 mod tests {
     use crate::stored_element::StoredElement;
-    use crate::deck::test_utils::{
+    use crate::deck::test_utils::utils::{
         return_test_deck,
         return_test_card
     };

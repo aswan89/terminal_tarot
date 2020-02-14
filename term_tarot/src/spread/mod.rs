@@ -25,7 +25,7 @@ impl fmt::Display for Spread {
 
 impl StoredElement for Spread {
     fn new_from_json(json: &str) -> Spread {
-        serde_json::from_str(json).unwrap()
+        serde_json::from_str(json).expect("Failed to deserialize spread file")
     }
 }
     
@@ -72,8 +72,8 @@ struct Position {
     name: String,
     meaning: String,
     orientation: PosOrientation,
-    x_pos: u8,
-    y_pos: u8,
+    x_pos: i8,
+    y_pos: i8,
 }
 
 impl Position {
@@ -87,7 +87,7 @@ impl Position {
 mod test_utils;
 #[cfg(test)]
 mod tests {
-    use crate::spread::test_utils::{
+    use crate::spread::test_utils::utils::{
         gen_test_spread,
         gen_test_spread_json
     };
@@ -96,7 +96,7 @@ mod tests {
         Spread
     };
     use crate::deck::Deck;
-    use crate::deck::test_utils::{
+    use crate::deck::test_utils::utils::{
         return_test_deck
     };
     use crate::stored_element::StoredElement;

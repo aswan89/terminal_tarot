@@ -1,17 +1,15 @@
 extern crate clap;
 extern crate pager;
-extern crate dialoguer;
 use clap::{App, Arg};
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 use std::path::Path;
 use pager::Pager;
-use dialoguer::Select;
-use std::fs;
 
-extern crate term_tarot_lib;
-use term_tarot_lib::deck::Deck;
-use term_tarot_lib::spread::{Spread, FilledSpread};
+extern crate term_tarot;
+use term_tarot::deck::Deck;
+use term_tarot::spread::{Spread, FilledSpread};
+use term_tarot::stored_element::StoredElement;
 
 fn main() {
     let now = std::time::SystemTime::now();
@@ -56,40 +54,17 @@ fn main() {
             ).to_string(),
     };
 
-    let spread_path = Path::new(matches.value_of("spread_path").unwrap());
-    let deck_path = Path::new(matches.value_of("deck_path").unwrap());
+    let spread_path = Path::new(matches.value_of("spread_path").expect("No Spread path supplied!"));
+    let deck_path = Path::new(matches.value_of("deck_path").expect("No Deck path supplied!"));
 
     fn calc_hash<T: Hash>(t: &T) -> u64 {
         let mut s = DefaultHasher::new();
         t.hash(&mut s);
         s.finish()
     }
-/*
-    fn choose_reading_element<T>(path: Path) -> T {
-        let mut found_elements = match path.is_dir() {
-            true => {
-                fs::read_dir(path)
-                    .unwrap()
-                    .map(|x| Deck::new_from_file(&x.unwrap().path()))
-                    .collect()
-            },
-            false => vec![Deck::new_from_file(&path)],
-        };
 
-        return match found_elements.len() {
-            1 => found_elements.remove(0),
-            _ => {
-                let menu = Select::new();
-                for element in found_elements {
-                    menu.item(element.name);
-                }
-                let taridx = menu.with_prompt(
-            }
-        }
-    };*/
-
-    let deck = Deck::new_from_file(deck_path);
-    let spread = Spread::new_from_file(spread_path);
+    let mut deck = Deck::new_from_path(deck_path);
+    let spread = Spread::new_from_path(spread_path);
     let filled_spread = FilledSpread::new(spread, &mut deck, calc_hash(&seed));
 
     if !matches.is_present("interactive") {

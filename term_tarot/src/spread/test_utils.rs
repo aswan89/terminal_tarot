@@ -1,3 +1,5 @@
+#[cfg(test)]
+pub mod utils {
 use crate::spread::{
     Position,
     Spread,
@@ -54,4 +56,5 @@ pub fn gen_test_spread() -> Spread {
         position_y_size: 7,
         name: "test spread".to_string()
     }
+}
 }
