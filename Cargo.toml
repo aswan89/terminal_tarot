@@ -1,8 +1,10 @@
 [package]
-name = "term_tarot"
+name = "terminal_tarot"
 version = "0.1.0"
 authors = ["Andrew Swanson <andrew@swanso.net>"]
 edition = "2018"
+description = "Toy program for making tarot readings at the terminal"
+readme = "README.md"
 
 [dependencies]
 
