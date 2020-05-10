@@ -6,11 +6,11 @@ use std::hash::{Hash, Hasher};
 use std::path::Path;
 use pager::Pager;
 
-extern crate term_tarot;
-use term_tarot::deck::Deck;
-use term_tarot::spread::{Spread, FilledSpread};
-use term_tarot::stored_element::StoredElement;
-use term_tarot::default_files::{write_default_files, ElementType};
+extern crate terminal_tarot;
+use terminal_tarot::deck::Deck;
+use terminal_tarot::spread::{Spread, FilledSpread};
+use terminal_tarot::stored_element::StoredElement;
+use terminal_tarot::default_files::{write_default_files, ElementType};
 
 fn main() {
     let now = std::time::SystemTime::now();
