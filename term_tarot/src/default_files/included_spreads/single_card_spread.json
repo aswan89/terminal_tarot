@@ -1,0 +1,18 @@
+{
+  "name": "Single Card Spread",
+  "position_x_size": 1,
+  "position_y_size": 1,
+  "positions": [
+    {
+      "order":1,
+      "name": "The Draw",
+      "meaning": "The answer to your question",
+      "orientation": "Vertical",
+      "x_pos": 0,
+      "y_pos": 0
+    }
+  ]
+}
+
+
+

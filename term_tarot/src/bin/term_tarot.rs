@@ -10,6 +10,7 @@ extern crate term_tarot;
 use term_tarot::deck::Deck;
 use term_tarot::spread::{Spread, FilledSpread};
 use term_tarot::stored_element::StoredElement;
+use term_tarot::default_files::{write_default_files, ElementType};
 
 fn main() {
     let now = std::time::SystemTime::now();
@@ -30,6 +31,11 @@ fn main() {
              .long("seed")
              .takes_value(true)
              .help("Value used to draw cards and select interpretations")
+             )
+        .arg(Arg::with_name("overwrite_default_files")
+             .short("o")
+             .long("overwrite")
+             .help("Write packaged spread/deck files to default directory ($HOME/.local/share/terminal_tarot)")
              )
         .arg(Arg::with_name("spread_path")
              .long("spread_path")
@@ -53,9 +59,28 @@ fn main() {
              &now.duration_since(std::time::SystemTime::UNIX_EPOCH).unwrap().as_secs().to_string()
             ).to_string(),
     };
+    //what do I need when there isn't a path supplied?
+    //A path for both spreads and decks.
+    //Should the function that I call return the paths AND write the default files?
+    //if so, the function should have a signature like `function(overwrite: T) -> String?
+    //the paths are parsed from strings currently 
+    //Also, should decks and spreads have their own functions or should it be a flag?
 
-    let spread_path = Path::new(matches.value_of("spread_path").expect("No Spread path supplied!"));
-    let deck_path = Path::new(matches.value_of("deck_path").expect("No Deck path supplied!"));
+    fn calc_paths(arguments: &clap::ArgMatches, tar_element: ElementType) -> std::path::PathBuf {
+        let tar_arg = match tar_element {
+            ElementType::Spread => "spread_path",
+            ElementType::Deck => "deck_path",
+        };
+        match arguments.is_present(tar_arg) {
+            true => Path::new(arguments.value_of(tar_arg).unwrap()).to_path_buf(),
+            false => {
+                write_default_files(tar_element, arguments.is_present("overwrite_default_files")).expect("couldn't write default files")
+            },
+        }
+    }
+
+    let spread_path = calc_paths(&matches, ElementType::Spread);
+    let deck_path = calc_paths(&matches, ElementType::Deck);
 
     fn calc_hash<T: Hash>(t: &T) -> u64 {
         let mut s = DefaultHasher::new();
@@ -63,8 +88,8 @@ fn main() {
         s.finish()
     }
 
-    let mut deck = Deck::new_from_path(deck_path);
-    let spread = Spread::new_from_path(spread_path);
+    let mut deck = Deck::new_from_path(deck_path.as_path());
+    let spread = Spread::new_from_path(spread_path.as_path());
     let filled_spread = FilledSpread::new(spread, &mut deck, calc_hash(&seed));
 
     if !matches.is_present("interactive") {
