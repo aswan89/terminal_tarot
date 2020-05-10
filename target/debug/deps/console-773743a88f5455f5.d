@@ -1,0 +1,12 @@
+/home/andrew/codeRepo/terminalTarot/term_tarot/target/debug/deps/console-773743a88f5455f5.rmeta: /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/lib.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/common_term.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/kb.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/term.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/unix_term.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/utils.rs
+
+/home/andrew/codeRepo/terminalTarot/term_tarot/target/debug/deps/libconsole-773743a88f5455f5.rlib: /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/lib.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/common_term.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/kb.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/term.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/unix_term.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/utils.rs
+
+/home/andrew/codeRepo/terminalTarot/term_tarot/target/debug/deps/console-773743a88f5455f5.d: /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/lib.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/common_term.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/kb.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/term.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/unix_term.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/utils.rs
+
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/lib.rs:
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/common_term.rs:
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/kb.rs:
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/term.rs:
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/unix_term.rs:
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/console-0.9.1/src/utils.rs:

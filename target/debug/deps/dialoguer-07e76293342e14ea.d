@@ -1,0 +1,12 @@
+/home/andrew/codeRepo/terminalTarot/term_tarot/target/debug/deps/dialoguer-07e76293342e14ea.rmeta: /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/lib.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/edit.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/prompts.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/select.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/theme.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/validate.rs
+
+/home/andrew/codeRepo/terminalTarot/term_tarot/target/debug/deps/libdialoguer-07e76293342e14ea.rlib: /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/lib.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/edit.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/prompts.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/select.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/theme.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/validate.rs
+
+/home/andrew/codeRepo/terminalTarot/term_tarot/target/debug/deps/dialoguer-07e76293342e14ea.d: /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/lib.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/edit.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/prompts.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/select.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/theme.rs /home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/validate.rs
+
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/lib.rs:
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/edit.rs:
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/prompts.rs:
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/select.rs:
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/theme.rs:
+/home/andrew/.cargo/registry/src/github.com-1ecc6299db9ec823/dialoguer-0.5.0/src/validate.rs:
