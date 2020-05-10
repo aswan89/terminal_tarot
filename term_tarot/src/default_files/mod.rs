@@ -42,15 +42,28 @@ pub fn write_default_files(element: ElementType, overwrite: bool) -> std::io::Re
         file_contents: include_str!("included_spreads/celtic_cross.json"),
     };
 
+    let single_card = DefaultFile {
+        filename: "single_card_spread.json".to_string(),
+        file_contents: include_str!("included_spreads/single_card_spread.json"),
+    };
+
+    let basic_three = DefaultFile {
+        filename: "basic_three_card.json".to_string(),
+        file_contents: include_str!("included_spreads/basic_three_card.json"),
+    };
+
+    let default_decks = vec![standard_deck];
+    let default_spreads = vec![debug_spread, celtic_cross, single_card, basic_three];
+
     match element {
         ElementType::Deck => {
             let mut deck_path = construct_dir_path("default_decks")?;
-            check_or_write_dir(&mut deck_path, vec![standard_deck], &overwrite)?;
+            check_or_write_dir(&mut deck_path, default_decks, &overwrite)?;
             Ok(deck_path)
         },
         ElementType::Spread => {
             let mut spread_path = construct_dir_path("default_spreads")?;
-            check_or_write_dir(&mut spread_path, vec![debug_spread, celtic_cross], &overwrite)?;
+            check_or_write_dir(&mut spread_path, default_spreads, &overwrite)?;
             Ok(spread_path)
         },
     }
