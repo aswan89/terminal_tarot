@@ -8,3 +8,5 @@ or if the `-o` flag is supplied when run.
 
 Application will make readings using JSON formatted files located at `$HOME/.local/share/terminal_tarot` as source files. 
 Custom files can be added if they match the fields defined in the default files.
+
+Build with cargo or install from Nixpkgs.
