@@ -1,6 +1,6 @@
 [package]
 name = "terminal_tarot"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Andrew Swanson <andrew@swanso.net>"]
 edition = "2018"
 description = "Toy program for making tarot readings at the terminal"
@@ -17,3 +17,4 @@ pager = "0.15.0"
 dialoguer = "0.5.0"
 walkdir = "2"
 directories = "2.0.2"
+shellexpand = "1.1.1"
