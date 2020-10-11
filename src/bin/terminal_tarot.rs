@@ -1,9 +1,9 @@
 extern crate clap;
 extern crate pager;
+extern crate shellexpand;
 use clap::{App, Arg};
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
-use std::path::Path;
 use pager::Pager;
 
 extern crate terminal_tarot;
@@ -59,12 +59,6 @@ fn main() {
              &now.duration_since(std::time::SystemTime::UNIX_EPOCH).unwrap().as_secs().to_string()
             ).to_string(),
     };
-    //what do I need when there isn't a path supplied?
-    //A path for both spreads and decks.
-    //Should the function that I call return the paths AND write the default files?
-    //if so, the function should have a signature like `function(overwrite: T) -> String?
-    //the paths are parsed from strings currently 
-    //Also, should decks and spreads have their own functions or should it be a flag?
 
     fn calc_paths(arguments: &clap::ArgMatches, tar_element: ElementType) -> std::path::PathBuf {
         let tar_arg = match tar_element {
@@ -72,7 +66,9 @@ fn main() {
             ElementType::Deck => "deck_path",
         };
         match arguments.is_present(tar_arg) {
-            true => Path::new(arguments.value_of(tar_arg).unwrap()).to_path_buf(),
+            true => std::path::PathBuf::from(
+                shellexpand::tilde(arguments.value_of(tar_arg).unwrap()).to_string()
+            ),
             false => {
                 write_default_files(tar_element, arguments.is_present("overwrite_default_files")).expect("couldn't write default files")
             },
@@ -80,7 +76,9 @@ fn main() {
     }
 
     let spread_path = calc_paths(&matches, ElementType::Spread);
+    println!("the spread_path is {:?}", spread_path);
     let deck_path = calc_paths(&matches, ElementType::Deck);
+    println!("the deck_path is {:?}", deck_path);
 
     fn calc_hash<T: Hash>(t: &T) -> u64 {
         let mut s = DefaultHasher::new();

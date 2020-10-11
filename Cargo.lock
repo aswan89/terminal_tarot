@@ -150,6 +150,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "dirs"
+version = "2.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "13aea89a5c93364a98e9b37b2fa237effbb694d5cfe01c5b70941f7eb087d5e3"
+dependencies = [
+ "cfg-if",
+ "dirs-sys",
+]
+
+[[package]]
 name = "dirs-sys"
 version = "0.3.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -407,6 +417,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "shellexpand"
+version = "1.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2c7e79eddc7b411f9beeaaf2d421de7e7cb3b1ab9eaf1b79704c0e4130cba6b5"
+dependencies = [
+ "dirs",
+]
+
+[[package]]
 name = "strsim"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -458,6 +477,7 @@ dependencies = [
  "rand",
  "serde",
  "serde_json",
+ "shellexpand",
  "walkdir",
 ]
 
